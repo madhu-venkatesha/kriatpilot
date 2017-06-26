@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Operators</h2>
+
+<table>
+	<tr>
+		<td><input id="n1"></td>
+		<td><input type="radio" name="op" value="+" checked> +<br>
+  			<input type="radio" name="op" value="-"> -<br></td>
+		<td><input id="n2"></td>
+		<td><button type="button" onclick="myFunction()">=</button></td>
+		<td><p id="result"></p></td>
+	</tr>
+</table>
+
+<script>
+function myFunction() {
+	var n1 = document.getElementById("n1").value;
+	if (!validNumeric(n1)) {
+		writeResult("invalid first input");
+		return;
+	}
+
+	var n2 = document.getElementById("n2").value;
+	if (!validNumeric(n2)) {
+		writeResult("invalid second input");
+		return;
+	}
+	
+	var ops = document.getElementsByName('op');
+	var op;
+	for(var i = 0; i < ops.length; i++){
+    	if(ops[i].checked){
+        	op = ops[i].value;
+        	break;
+    	}
+	}
+	
+	writeResult(binOp(Number(n1), Number(n2), op));
+}
+
+function writeResult(p) {
+	document.getElementById("result").innerHTML = p;
+}
+
+function validNumeric(p) {
+	return !p || isNaN(p) ? false : true;
+}
+
+function binOp(p1, p2, op) {
+	switch(op) {
+    case "+": return p1 + p2;
+    case "-": return p1 - p2;
+	}
+}
+</script>
+
+</body>
+</html>
